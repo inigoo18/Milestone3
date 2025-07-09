@@ -79,8 +79,8 @@ with top_col[0]:
     )
 with top_col[1]:
     st.markdown('<div style="margin-top: 40px;">', unsafe_allow_html=True)
-    icon = "🛠️" if st.session_state.mode == "User" else "👤"
-    st.button(icon, help="Switch mode", key="mode_toggle", on_click=toggle_mode)
+    icon = "Cambiar a admin 🗝️" if st.session_state.mode == "User" else "Cambiar a usuario 👤"
+    st.button(icon, help="Cambiar de usuario", key="mode_toggle", on_click=toggle_mode)
     st.markdown("</div>", unsafe_allow_html=True)
 
 

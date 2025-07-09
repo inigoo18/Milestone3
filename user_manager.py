@@ -27,24 +27,25 @@ def load_questions_from_txt(filepath="./questions.txt"):
     return open_questions, likert_questions, ordering_question
 
 # --- Open-ended questions ---
-def render_open_ended_questions(questions):
+def render_open_ended_questions(questions, start_number=1):
     answers = []
     with st.expander("✏️ Preguntas Abiertas"):
-        for qid, label, help_text in questions:
-            ans = st.text_area(f"{qid}. {label}", help=help_text, height=100, key=f"open_{qid}")
+        for i, (qid, label, help_text) in enumerate(questions, start=start_number):
+            st.markdown(f"**{i}. {label}**")
+            ans = st.text_area("", help=help_text, height=100, key=f"open_{qid}")
             answers.append((qid, ans))
-    return answers
+    return answers, start_number + len(questions)
 
 # --- Likert scale questions ---
-def render_likert_questions(questions):
+def render_likert_questions(questions, start_number=1):
     responses = []
     with st.expander("📊 Escala de Valoración"):
-        for qid, question, range_str in questions:
+        for i, (qid, question, range_str) in enumerate(questions, start=start_number):
             scale_min, scale_max = map(int, range_str.split("-"))
-            st.write(f"{qid}. {question}")
+            st.markdown(f"**{i}. {question}**")
             res = st.slider("", scale_min, scale_max, key=f"likert_{qid}")
             responses.append((qid, question, res))
-    return responses
+    return responses, start_number + len(questions)
 
 # --- Orderable questions via dropdowns ---
 def render_orderable_questions(title, options):
@@ -113,15 +114,15 @@ def render_user_view():
     with col1:
         open_qs, likert_qs, ordering_q = load_questions_from_txt()
 
-        open_answers = render_open_ended_questions(open_qs)
-        likert_responses = render_likert_questions(likert_qs)
+        # Render questions with global numbering
+        open_answers, next_number = render_open_ended_questions(open_qs, start_number=1)
+        likert_responses, next_number = render_likert_questions(likert_qs, start_number=next_number)
         ordered = render_orderable_questions(ordering_q[1], ordering_q[2]) if ordering_q else []
 
         if st.button("🚀 Enviar respuestas"):
             st.success("✅ ¡Gracias por compartir tus respuestas!")
             st.markdown("### 🧾 Resumen:")
             for qid, ans in open_answers:
-                # Find question text for nicer output
                 question_text = next(q[1] for q in open_qs if q[0] == qid)
                 st.markdown(f"- **{question_text}**: {ans}")
             for qid, question, score in likert_responses:

@@ -82,14 +82,14 @@ def render_open_questions(questions, answers):
                     """, unsafe_allow_html=True)
 
             if "AI" in responses:
-                with st.expander("🤖 Resumen generado por IA"):
+                with st.expander("💡 Resumen generado por IA"):
                     st.info(responses["AI"])
             else:
-                with st.expander("🤖 Resumen generado por IA"):
+                with st.expander("💡 Resumen generado por IA"):
                     st.info("Resumen automático pendiente o generado manualmente.")
 
             if "AI_FOLLOWUP" in responses:
-                with st.expander("🤖 Preguntas y observaciones de seguimiento IA"):
+                with st.expander("🔥 Hotspots"):
                     st.info(responses["AI_FOLLOWUP"])
 
             st.markdown("---")
@@ -136,10 +136,10 @@ def render_likert_questions(questions, answers):
             st.markdown(f"📈 **Media:** {mean:.2f} &nbsp;&nbsp; | 📉 **Desviación estándar:** {std:.2f}", unsafe_allow_html=True)
 
             if "AI" in responses:
-                with st.expander("🤖 Interpretación IA"):
+                with st.expander("💡 Interpretación IA"):
                     st.info(responses["AI"])
             else:
-                with st.expander("🤖 Interpretación IA"):
+                with st.expander("💡 Interpretación IA"):
                     if mean >= 4:
                         st.success("Existe un alto grado de consenso positivo.")
                     elif std >= 1.0:
@@ -148,7 +148,7 @@ def render_likert_questions(questions, answers):
                         st.info("Se observa una tendencia favorable moderada.")
 
             if "AI_FOLLOWUP" in responses:
-                with st.expander("🤖 Preguntas y observaciones de seguimiento IA"):
+                with st.expander("🔥 Hotspots"):
                     st.info(responses["AI_FOLLOWUP"])
             st.markdown("---")
 
@@ -202,17 +202,17 @@ def render_ordering_questions(questions, answers):
         st.plotly_chart(fig, use_container_width=True)
 
         if "AI" in responses:
-            with st.expander("🤖 Análisis IA"):
+            with st.expander("💡 Análisis IA"):
                 st.info(responses["AI"])
         else:
-            with st.expander("🤖 Análisis IA"):
+            with st.expander("💡 Análisis IA"):
                 st.info(
                     "Los síntomas con menor puntuación promedio son considerados más importantes en general. "
                     "Esto proporciona una visión clara de las prioridades clínicas del grupo."
                 )
 
         if "AI_FOLLOWUP" in responses:
-            with st.expander("🤖 Preguntas y observaciones de seguimiento IA"):
+            with st.expander("🔥 Hotspots"):
                 st.info(responses["AI_FOLLOWUP"])
 
 # ----------- Admin View -----------
