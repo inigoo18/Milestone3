@@ -55,13 +55,14 @@ def parse_answers_file(path="answers.txt"):
     return answers_by_type
 
 # ----------- Render Open Questions -----------
-def render_open_questions(questions, answers):
+def render_open_questions(questions, answers, start_number=1):
     st.markdown("### ✏️ Preguntas Abiertas")
     st.markdown("---")
+    current_number = start_number
     for q_id, responses in answers.get("OPEN", {}).items():
         q_data = questions["OPEN"].get(q_id, {"text": f"Pregunta Abierta {q_id}", "description": ""})
         with st.container():
-            st.markdown(f"**🔹 {q_data['text']}**")
+            st.markdown(f"**{current_number}.** 🔹 {q_data['text']}")
             if q_data["description"]:
                 st.caption(q_data["description"])
 
@@ -93,16 +94,19 @@ def render_open_questions(questions, answers):
                     st.info(responses["AI_FOLLOWUP"])
 
             st.markdown("---")
+        current_number += 1
+    return current_number
 
 # ----------- Render Likert Questions -----------
-def render_likert_questions(questions, answers):
+def render_likert_questions(questions, answers, start_number=1):
     st.markdown("### 📊 Preguntas de Escala Likert")
     st.markdown("---")
+    current_number = start_number
 
     for q_id, responses in answers.get("LIKERT", {}).items():
         q_data = questions["LIKERT"].get(q_id, {"text": f"Pregunta Likert {q_id}", "description": ""})
         with st.container():
-            st.markdown(f"**🔹 {q_data['text']}**")
+            st.markdown(f"**{current_number}.** 🔹 {q_data['text']}")
             if q_data["description"]:
                 st.caption(q_data["description"])
 
@@ -151,15 +155,18 @@ def render_likert_questions(questions, answers):
                 with st.expander("🔥 Hotspots"):
                     st.info(responses["AI_FOLLOWUP"])
             st.markdown("---")
+        current_number += 1
+    return current_number
 
 # ----------- Render Ordering Questions -----------
-def render_ordering_questions(questions, answers):
+def render_ordering_questions(questions, answers, start_number=1):
     st.markdown("### 🔃 Priorización de Síntomas")
     st.markdown("---")
+    current_number = start_number
 
     for q_id, responses in answers.get("ORDERING", {}).items():
         q_data = questions["ORDERING"].get(q_id, {"text": f"Pregunta de Priorización {q_id}", "description": ""})
-        st.markdown(f"**🔹 {q_data['text']}**")
+        st.markdown(f"**{current_number}.** 🔹 {q_data['text']}")
         if q_data["description"]:
             st.caption(q_data["description"])
 
@@ -214,6 +221,9 @@ def render_ordering_questions(questions, answers):
         if "AI_FOLLOWUP" in responses:
             with st.expander("🔥 Hotspots"):
                 st.info(responses["AI_FOLLOWUP"])
+        st.markdown("---")
+        current_number += 1
+    return current_number
 
 # ----------- Admin View -----------
 def render_admin_view():
@@ -239,6 +249,8 @@ def render_admin_view():
 
     st.markdown("## 🗒️ Resultados del Cuestionario")
 
-    render_open_questions(questions, answers)
-    render_likert_questions(questions, answers)
-    render_ordering_questions(questions, answers)
+    # Numeración global
+    next_number = 1
+    next_number = render_open_questions(questions, answers, start_number=next_number)
+    next_number = render_likert_questions(questions, answers, start_number=next_number)
+    next_number = render_ordering_questions(questions, answers, start_number=next_number)

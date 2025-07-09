@@ -2,8 +2,6 @@ import streamlit as st
 from datetime import datetime, timedelta
 import calendar
 
-# Updated list of Spanish names
-RESPONDENTS = ["María", "Carlos", "Lucía", "Javier", "Elena", "Sofía"]
 
 # --- Load questions from file ---
 def load_questions_from_txt(filepath="./questions.txt"):
@@ -31,7 +29,7 @@ def render_open_ended_questions(questions, start_number=1):
     answers = []
     with st.expander("✏️ Preguntas Abiertas"):
         for i, (qid, label, help_text) in enumerate(questions, start=start_number):
-            st.markdown(f"**{i}. {label}**")
+            st.markdown(f"**{i}.** {label}")
             ans = st.text_area("", help=help_text, height=100, key=f"open_{qid}")
             answers.append((qid, ans))
     return answers, start_number + len(questions)
@@ -42,23 +40,23 @@ def render_likert_questions(questions, start_number=1):
     with st.expander("📊 Escala de Valoración"):
         for i, (qid, question, range_str) in enumerate(questions, start=start_number):
             scale_min, scale_max = map(int, range_str.split("-"))
-            st.markdown(f"**{i}. {question}**")
+            st.markdown(f"**{i}.** {question}")
             res = st.slider("", scale_min, scale_max, key=f"likert_{qid}")
             responses.append((qid, question, res))
     return responses, start_number + len(questions)
 
 # --- Orderable questions via dropdowns ---
-def render_orderable_questions(title, options):
+def render_orderable_questions(title, options, start_number=1):
     ranked = []
     remaining = options.copy()
     with st.expander("🔃 Ordena según tu preferencia"):
-        st.write(title)
+        st.markdown(f"**{start_number}.** {title}")
         for i in range(1, len(options) + 1):
             choice = st.selectbox(f"{i}º:", ["--"] + remaining, key=f"order_{i}")
             ranked.append(choice)
             if choice in remaining:
                 remaining.remove(choice)
-    return [item for item in ranked if item != "--"]
+    return [item for item in ranked if item != "--"], start_number + 1
 
 # --- Calendar rendering ---
 def render_meeting_calendar(kol_meeting):
@@ -117,7 +115,7 @@ def render_user_view():
         # Render questions with global numbering
         open_answers, next_number = render_open_ended_questions(open_qs, start_number=1)
         likert_responses, next_number = render_likert_questions(likert_qs, start_number=next_number)
-        ordered = render_orderable_questions(ordering_q[1], ordering_q[2]) if ordering_q else []
+        ordered, next_number = render_orderable_questions(ordering_q[1], ordering_q[2], start_number=next_number) if ordering_q else ([], next_number)
 
         if st.button("🚀 Enviar respuestas"):
             st.success("✅ ¡Gracias por compartir tus respuestas!")
