@@ -1,0 +1,5 @@
+OPEN::1::¿Qué biomarcadores relacionados con la inflamación tipo 2 consideras relevantes para EPOC?::Menciona biomarcadores con valor diagnóstico o pronóstico, incluyendo aquellos que pueden predecir respuesta a terapias como Dupixent.
+OPEN::2::¿Cada cuánto tiempo consideras pertinente monitorizar al paciente con EPOC tratado con terapias dirigidas?::Explica la frecuencia ideal para el seguimiento clínico y de biomarcadores.
+LIKERT::1::¿Cuán efectiva consideras la rehabilitación pulmonar en pacientes con EPOC tratados con Dupixent?::1-5
+LIKERT::2::¿Qué tan útil es el uso de biomarcadores inflamatorios (como eosinófilos o IL-13) en tu práctica clínica para manejar EPOC?::1-5
+ORDERING::1::Ordena los siguientes biomarcadores inflamatorios según su importancia clínica para guiar el tratamiento con Dupixent en EPOC::Eosinófilos,IL-13,FeNO,IgE,Periostina

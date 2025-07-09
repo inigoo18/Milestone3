@@ -1,0 +1,39 @@
+OPEN::1::Lucía::Considero que los eosinófilos y la IL-13 son biomarcadores relevantes para identificar pacientes que podrían beneficiarse de Dupixent.
+OPEN::1::Javier::El recuento de eosinófilos es importante, aunque en algunos casos la utilidad clínica de IL-13 todavía está en estudio.
+OPEN::1::Sofía::PCR y fibrinógeno siguen siendo biomarcadores útiles; IL-13 me parece interesante pero con evidencia limitada aún.
+OPEN::1::Diego::Monitoreo de eosinófilos es clave, pero creo que Dupixent todavía no es ampliamente adoptado para EPOC.
+OPEN::1::Elena::Los biomarcadores inflamatorios relacionados con Dupixent, especialmente eosinófilos, tienen potencial pero requieren más validación.
+OPEN::1::Carlos::Eosinófilos son útiles, pero no estoy seguro de cuánto aporta medir IL-13 rutinariamente en clínica.
+OPEN::1::AI::En general, se reconoce la importancia de eosinófilos, mientras que la utilidad de IL-13 y otros biomarcadores relacionados con Dupixent genera opiniones mixtas.
+OPEN::1::AI_FOLLOWUP::¿Podríamos explorar la evidencia clínica más reciente sobre IL-13 y su impacto en decisiones terapéuticas?
+OPEN::2::Lucía::Recomiendo monitorizar cada 3 meses si el paciente está estable con Dupixent, aumentando la frecuencia en caso de cambios.
+OPEN::2::Javier::Creo que un seguimiento trimestral es suficiente, aunque algunos prefieren hacerlo más frecuente al inicio.
+OPEN::2::Sofía::Para mí, la monitorización mensual solo es necesaria si hay dudas sobre la respuesta al tratamiento.
+OPEN::2::Diego::Normalmente hago controles semestrales, salvo que la situación clínica indique otra cosa.
+OPEN::2::Elena::En pacientes complejos o con terapia biológica prefiero monitorear trimestralmente.
+OPEN::2::Carlos::El seguimiento trimestral me parece razonable, pero sin demasiada evidencia para hacerlo más frecuente.
+OPEN::2::AI::Predomina la recomendación de seguimiento trimestral, con variabilidad según la experiencia clínica y complejidad del paciente.
+OPEN::2::AI_FOLLOWUP::¿Sería útil establecer un protocolo más estandarizado de monitorización basado en biomarcadores?
+LIKERT::1::Lucía::5
+LIKERT::1::Javier::4
+LIKERT::1::Sofía::3
+LIKERT::1::Diego::4
+LIKERT::1::Elena::4
+LIKERT::1::Carlos::3
+LIKERT::1::AI::Las opiniones sobre la efectividad de la rehabilitación pulmonar son en su mayoría positivas pero con algunas reservas.
+LIKERT::1::AI_FOLLOWUP::¿Qué factores influyen en las variaciones percibidas de la efectividad?
+LIKERT::2::Lucía::5
+LIKERT::2::Javier::4
+LIKERT::2::Sofía::3
+LIKERT::2::Diego::4
+LIKERT::2::Elena::4
+LIKERT::2::Carlos::3
+LIKERT::2::AI::La utilidad de biomarcadores en la práctica clínica es reconocida, aunque algunos cuestionan su aplicabilidad diaria.
+ORDERING::1::Lucía::Eosinófilos,IL-13,FeNO,IgE,Periostina
+ORDERING::1::Javier::IL-13,Eosinófilos,IgE,FeNO,Periostina
+ORDERING::1::Sofía::Eosinófilos,FeNO,IL-13,IgE,Periostina
+ORDERING::1::Diego::Eosinófilos,IgE,FeNO,IL-13,Periostina
+ORDERING::1::Elena::IL-13,Eosinófilos,Periostina,FeNO,IgE
+ORDERING::1::Carlos::Eosinófilos,IL-13,IgE,FeNO,Periostina
+ORDERING::1::AI::Eosinófilos e IL-13 se destacan como biomarcadores prioritarios, aunque existe variabilidad en la importancia asignada a otros marcadores.
+ORDERING::1::AI_FOLLOWUP::¿Sería relevante analizar la correlación clínica entre estos biomarcadores y respuesta a Dupixent?
